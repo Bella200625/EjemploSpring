@@ -65,4 +65,12 @@ public class ControladorInicio {
         return "modificar";
 
     }
+    
+    @GetMapping("/eliminar/{cedula}")
+    public String eliminar(Usuario usuario) {
+        log.info("Invocando el metodo ELIMINAR");
+        userServicio.eliminar(usuario);
+        return "redirect:/";
+    }
+
 }

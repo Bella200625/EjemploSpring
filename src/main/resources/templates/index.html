@@ -14,5 +14,30 @@
     <b>CLAVE:</b><span th:text="${alguien.clave}"></span><br>
     <b>NOMBRE:</b><span th:text="${alguien.nombre}"></span><br>
     <b>EMAIL:</b><span th:text="${alguien.email}"></span><br>
+    <hr>
+    <h4>LISTA DE PERSONAS</h4>
+    <hr>
+    
+    <div th:if="${usuarios != null and !usuarios.empty}">
+        <table border="2">
+            <tr>
+                <th>CEDULA</th>
+                <th>CLAVE</th>
+                <th>NOMBRE</th>
+                <th>EMAIL</th>
+            </tr>
+            <tr th:each="u : ${usuarios}">
+                <td th:text="${u.cedula}"></td>
+                <td th:text="${u.clave}"></td>
+                <td th:text="${u.nombre}"></td>
+                <td th:text="${u.email}"></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div th:if="${usuarios == null or usuarios.empty}">
+        La lista de usuarios está vacía.
+    </div>
+
 </body>
 </html>

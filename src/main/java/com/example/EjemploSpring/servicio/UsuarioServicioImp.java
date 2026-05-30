@@ -1,11 +1,13 @@
 package com.example.EjemploSpring.servicio;
 
 import java.util.List;
-import com.example.EjemploSpring.dao.UsuarioCrud;
-import com.example.EjemploSpring.modelo.Usuario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.example.EjemploSpring.dao.UsuarioCrud;
+import com.example.EjemploSpring.modelo.Usuario;
 
 @Service
 public class UsuarioServicioImp implements IUsuarioServicio {
@@ -36,4 +38,5 @@ public class UsuarioServicioImp implements IUsuarioServicio {
     public Usuario buscar(Usuario user) {
         return crudUsuario.findById(user.getCedula()).orElse(null);
     }
+
 }

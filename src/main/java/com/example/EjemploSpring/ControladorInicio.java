@@ -2,12 +2,12 @@ package com.example.EjemploSpring;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.EjemploSpring.dao.UsuarioCrud;
 import com.example.EjemploSpring.modelo.Usuario;
@@ -57,4 +57,12 @@ public class ControladorInicio {
         userServicio.guardar(usuario);
         return "redirect:/"; 
 }
+    @GetMapping("/editar/{cedula}")
+    public String editar(Usuario usuario, Model modelo) {
+        log.info("Invocando el metodo EDITAR");
+        usuario = userServicio.buscar(usuario);
+        modelo.addAttribute("usuario", usuario);
+        return "modificar";
+
+    }
 }

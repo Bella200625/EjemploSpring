@@ -1,3 +1,6 @@
 com\example\EjemploSpring\modelo\Usuario.class
+com\example\EjemploSpring\servicio\IUsuarioServicio.class
+com\example\EjemploSpring\servicio\UsuarioServicioImp.class
+com\example\EjemploSpring\dao\UsuarioCrud.class
 com\example\EjemploSpring\ControladorInicio.class
 com\example\EjemploSpring\EjemploSpringApplication.class

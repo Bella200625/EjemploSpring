@@ -14,15 +14,22 @@
         <br/>
         <label for="cedula">CEDULA:</label>
         <input type="text" name="cedula" th:field="*{cedula}" required />
+        <span th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}" style="color:rgb(143, 7, 7);">Error Cedula</span>
         <br/>
+
         <label for="clave">CLAVE:</label>
         <input type="password" name="clave" th:field="*{clave}" />
+        <span th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}" style="color:rgb(143, 7, 7);">Error Clave</span>
         <br/>
+
         <label for="nombre">NOMBRE:</label>
-        <input type="text" name="nombre" th:field="*{nombre}" required />
+        <input type="text" name="nombre" th:field="*{nombre}" />
+        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color:rgb(143, 7, 7);">Error Nombre</span>
         <br/>
+
         <label for="email">EMAIL:</label>
         <input type="email" name="email" th:field="*{email}" />
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:rgb(143, 7, 7);">Error Email</span>
         <br/><br/>
         
         <input type="reset" value="LIMPIAR"/> &nbsp; &nbsp; &nbsp;

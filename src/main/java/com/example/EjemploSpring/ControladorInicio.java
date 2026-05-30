@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -13,6 +14,7 @@ import com.example.EjemploSpring.dao.UsuarioCrud;
 import com.example.EjemploSpring.modelo.Usuario;
 import com.example.EjemploSpring.servicio.IUsuarioServicio;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -53,7 +55,11 @@ public class ControladorInicio {
 
     // Ruta que recibe los datos del formulario y los guarda usando el servicio
     @PostMapping("/guardar")
-    public String guardar(Usuario usuario) {
+    public String guardar(@Valid Usuario usuario, Errors errores) 
+        {
+        if (errores.hasErrors()){
+            return "modificar";
+       }
         userServicio.guardar(usuario);
         return "redirect:/"; 
 }

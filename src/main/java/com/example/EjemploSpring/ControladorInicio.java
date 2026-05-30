@@ -2,6 +2,7 @@ package com.example.EjemploSpring;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -43,4 +44,17 @@ public class ControladorInicio {
         // Retorna la vista llamada "index.html"
         return "index";
     }
+
+    
+    @GetMapping("/agregar")
+    public String agregar(Usuario usuario) {
+        return "modificar";
+    }
+
+    // Ruta que recibe los datos del formulario y los guarda usando el servicio
+    @PostMapping("/guardar")
+    public String guardar(Usuario usuario) {
+        userServicio.guardar(usuario);
+        return "redirect:/"; 
+}
 }

@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.EjemploSpring.modelo.Usuario;
 
-public interface UsuarioDao extends CrudRepository<Usuario, String> {
+public interface UsuarioCrud extends CrudRepository<Usuario, String> {
     
 }

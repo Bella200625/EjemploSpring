@@ -7,18 +7,18 @@
 <body>
 
     <header th:fragment="cabecero">
-        <h2>ᓚ₍^..^₎ APP WEB MVC CON SPRING BOOT𓂃✍︎</h2>
+        <h2 th:text="#{plantilla.titulo}">mensaje aqui pa cabecero</h2>
     </header>
 
     <footer th:fragment="pie">
-        <span>☕︎ By: John Carlos Arrieta Arrieta</span>
+    <span th:text="#{plantilla.pie}">By: Autor</span>
         <p>
             <a href="https://www.youtube.com/johncarlosarrietaarrieta">ᓚᘏᗢ-Canal de Youtube</a>
         </p>
 
         <div style="margin-top: 10px; font-style: italic; color: #555;">
-        <p>¡Gracias por visitar mi proyecto!ᨐฅ</p>
-    </div>
+            <p>¡Gracias por visitar mi proyecto!ᨐฅ</p>
+        </div>
     
     </footer>
 

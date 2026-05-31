@@ -11,33 +11,33 @@
 
 <body>
     <h2>Datos del Usuario</h2>
-    <a th:href="@{/}">REGRESAR</a>
+    <a th:href="@{/}" th:text="#{accion.regresar}">REGRESAR</a>
     <br/>
     
     <form th:action="@{/guardar}" method="POST" th:object="${usuario}">
         <br/>
-        <label for="cedula">𑄝 CEDULA:</label>
+        <label for="cedula" th:text="#{f.cedula}"></label>
         <input type="text" name="cedula" th:field="*{cedula}" required />
         <span th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}" style="color:rgb(143, 7, 7);">Error Cedula</span>
         <br/>
 
-        <label for="clave">𑄝 CLAVE:</label>
+        <label for="clave" th:text="#{f.clave}"></label>
         <input type="password" name="clave" th:field="*{clave}" />
         <span th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}" style="color:rgb(143, 7, 7);">Error Clave</span>
         <br/>
 
-        <label for="nombre">𑄝 NOMBRE:</label>
+        <label for="nombre" th:text="#{f.nombre}"></label>
         <input type="text" name="nombre" th:field="*{nombre}" />
         <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color:rgb(143, 7, 7);">Error Nombre</span>
         <br/>
 
-        <label for="email">𑄝 EMAIL:</label>
+        <label for="email" th:text="#{f.email}"></label>
         <input type="email" name="email" th:field="*{email}" />
         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:rgb(143, 7, 7);">Error Email</span>
         <br/><br/>
         
-        <input type="reset" value="LIMPIAR"/> &nbsp; &nbsp; &nbsp;
-        <input type="submit" name="guardar" value="GUARDAR"/>
+        <input type="reset" th:value="#{accion.reiniciar}"/> &nbsp; &nbsp; &nbsp;
+        <input type="submit" name="guardar" th:value="#{accion.guardar}"/>
     </form>
 
     <hr>

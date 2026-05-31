@@ -11,31 +11,33 @@
 
 <h3>PAGINA DE INICIO</h3>
 
-    <a th:href="@{/agregar}">AGREGAR USUARIO</a>
-
+    <a 
+    th:href="@{/agregar}" th:text="#{usuario.crear}">mensaje pa agregar
+    </a>
+    
     <hr>
     
+    <h4 th:text="#{usuario.lista}">mensaje de lista de personas</h4>
 
-    
-    <h4>LISTA DE PERSONAS</h4>
-    
     <div th:if="${usuarios != null and !usuarios.empty}">
         <table border="1">
             <tr>
-                <th>CEDULA</th>
-                <th>CLAVE</th>
-                <th>NOMBRE</th>
-                <th>EMAIL</th>
-                <th>EDITAR</th> 
-                <th>ELIMINAR</th>
+                <th><span th:text="#{usuario.cedula}"></span></th>
+                <th><span th:text="#{usuario.clave}"></span></th>
+                <th><span th:text="#{usuario.nombre}"></span></th>
+                <th><span th:text="#{usuario.email}"></span></th>
+                <th><span th:text="#{accion.editar}"></span></th>
+                <th><span th:text="#{accion.eliminar}"></span></th>
+
             </tr>
             <tr th:each="u : ${usuarios}">
                 <td th:text="${u.cedula}"></td>
                 <td th:text="${u.clave}"></td>
                 <td th:text="${u.nombre}"></td>
                 <td th:text="${u.email}"></td>
-                <td><a th:href="@{/editar/} + ${u.cedula}">EDITAR</a></td>
-                <td><a th:href="@{/eliminar(cedula=${u.cedula})}" th:text="ELIMINAR"></a></td>            </tr>
+                <td><a th:href="@{/editar/} + ${u.cedula}" th:text="#{accion.editar}"></a></td>
+                <td><a th:href="@{/eliminar(cedula=${u.cedula})}" th:text="#{accion.eliminar}"></a></td>
+            </tr>
         </table>
     </div>
     

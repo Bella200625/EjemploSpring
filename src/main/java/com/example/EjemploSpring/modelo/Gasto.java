@@ -1,19 +1,14 @@
 package com.example.EjemploSpring.modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.validation.constraints.*;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @NoArgsConstructor
-@Entity // Le dice a Spring que esta clase es una Entidad de Base de Datos
+@Entity // esto lee dice a Spring que esta clase es una Entidad de Base de Datos
 @Table(name = "gastos") // Mapea exactamente con el nombre de tu tabla en MySQL
 public class Gasto {
 
@@ -21,14 +16,21 @@ public class Gasto {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT en MySQL
     private Integer id;
 
+    @NotNull 
     private String fecha;
+    @NotEmpty
     private String lugar;
+    @NotEmpty
     private String descripcion;
 
+    @NotNull
     @Column(name = "valor_total_sin_iva") // Mapea con el nombre exacto de la columna en phpMyAdmin
+    @Min(value = 0, message = "El valor debe ser mayor a cero")
     private Double valorTotalSinIVA;
 
     @Column(name = "iva_total")
+    @NotNull
+    @Min(value = 0, message = "El IVA no puede ser negativo")
     private Double ivaTotal;
 
     @Column(name = "valor_total_con_iva")
@@ -39,9 +41,16 @@ public class Gasto {
     private Usuario usuario;
 
     public void calcularValorTotalConIva() {
+
         double sinIva = (this.valorTotalSinIVA != null) ? this.valorTotalSinIVA : 0.0;
-        double iva = (this.ivaTotal != null) ? this.ivaTotal : 0.0;
-        this.valorTotalConIVA = sinIva + iva;
+    
+        double tasaIva = 0.19; 
+        
+        this.ivaTotal = sinIva * tasaIva;
+        
+        this.valorTotalConIVA = sinIva + this.ivaTotal;
     }
+
+    
 
 }

@@ -8,4 +8,6 @@ public interface IGastoServicio {
     public List<Gasto> listarGastos();
     List<Gasto> buscarGastosPorUsuario(String cedula);
     void guardarGasto(Gasto gasto);
+    void eliminarGasto(Gasto gasto);
+    Gasto buscarGasto(Gasto gasto);
 }

@@ -43,4 +43,15 @@ public class GastoServicioImpl implements IGastoServicio {
     public void guardarGasto(Gasto gasto) {
         gastoCrud.save(gasto); 
     }
+
+    @Override
+    public void eliminarGasto(Gasto gasto) {
+        gastoCrud.delete(gasto); // El delete() de Spring borra por ID automáticamente
+    }
+
+    @Override
+    public Gasto buscarGasto(Gasto gasto) {
+        // Busca el gasto por ID, si no lo encuentra nos devuelve un valor nulo
+        return gastoCrud.findById(gasto.getId()).orElse(null);
+    }
 }

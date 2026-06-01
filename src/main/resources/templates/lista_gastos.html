@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LISTA DE GASTOS</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+    <header th:replace="plantillas/partes :: cabecero"></header>
+
+    <div style="padding: 10px; background-color: #eee; margin-bottom: 15px;">
+        <a th:href="@{/}" th:text="#{accion.regresar}">REGRESAR</a>
+        
+        <h3>CEDULA DEL USUARIO: <span th:text="${cedula}"></span></h3>
+    </div>
+
+    <div style="margin-bottom: 15px; padding-left: 10px;">
+        <a th:href="@{/gastos/agregar/{cedula}(cedula=${cedula})}" style="background-color: #b3cce6; color: rgb(12, 10, 10); padding: 5px 10px; text-decoration: none; border-radius: 4px;">
+            Agregar Nuevo Gasto
+        </a>
+    </div>
+
+    <hr>
+    <h2 style="color: rgb(70, 0, 128); padding-left: 10px;">Gastos Registrados</h2>
+    <hr>
+
+    <div style="padding: 10px;">
+        <table border="2" style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead style="background-color: #f2f2f2;">
+                <tr>
+                    <th style="padding: 8px;">FECHA</th>
+                    <th style="padding: 8px;">LUGAR</th>
+                    <th style="padding: 8px;">DESCRIPCIÓN</th>
+                    <th style="padding: 8px;">VALOR SIN IVA</th>
+                    <th style="padding: 8px;">IVA TOTAL</th>
+                    <th style="padding: 8px;">VALOR CON IVA</th>
+                    <th style="padding: 8px;">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="g : ${gastos}">
+                    <td style="padding: 8px;" th:text="${g.fecha}"></td>
+                    <td style="padding: 8px;" th:text="${g.lugar}"></td>
+                    <td style="padding: 8px;" th:text="${g.descripcion}"></td>
+                    <td style="padding: 8px;" th:text="${g.valorTotalSinIVA}"></td>
+                    <td style="padding: 8px;" th:text="${g.ivaTotal}"></td>
+                    <td style="padding: 8px;" th:text="${g.valorTotalConIVA}"></td>
+                    <td style="padding: 8px;">
+                        <a th:href="@{/gastos/editar/{id}(id=${g.id})}" style="color: blue; margin-right: 10px;">Editar</a>
+                        <a th:href="@{/gastos/eliminar/{id}(id=${g.id})}" style="color: red;" onclick="return confirm('¿Seguro que deseas eliminar este gasto?')">Eliminar</a>
+                    </td>
+                </tr>
+                <tr th:if="${gastos == null or gastos.empty}">
+                    <td colspan="7" style="text-align: center; padding: 15px; color: gray;">
+                        NO HAY GASTOS REGISTRADOS PARA ESTE USUARIO.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer th:replace="plantillas/partes :: pie"></footer>
+
+</body>
+</html>

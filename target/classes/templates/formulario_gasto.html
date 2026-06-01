@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>REGISTRAR GASTO</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+    <header th:replace="plantillas/partes :: cabecero"></header>
+
+    <div style="padding: 10px; background-color: #eee; margin-bottom: 15px;">
+        <a th:href="@{/gastos/listar/{cedula}(cedula=${cedula})}" th:text="#{accion.regresar}">REGRESAR</a>
+        <h3>REGISTRAR NUEVO GASTO PARA LA CÉDULA: <span th:text="${cedula}"></span></h3>
+    </div>
+
+    <div style="padding: 15px; max-width: 500px;">
+        <form th:action="@{/gastos/guardar}" th:object="${gasto}" method="POST">
+            
+            <input type="hidden" name="usuarioCedula" th:value="${cedula}" />
+
+            <div style="margin-bottom: 10px;">
+                <label>Fecha:</label><br>
+                <input type="date" th:field="*{fecha}" required style="width: 100%; padding: 6px;" />
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <label>Lugar:</label><br>
+                <input type="text" th:field="*{lugar}" required placeholder="Ej. Centro comercial sanfernando" style="width: 100%; padding: 6px;" />
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <label>Descripción:</label><br>
+                <input type="text" th:field="*{descripcion}" required placeholder="Ej. Compra de papelería etc" style="width: 100%; padding: 6px;" />
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <label>Valor Total (Sin IVA):</label><br>
+                <input type="number" step="0.01" th:field="*{valorTotalSinIVA}" required style="width: 100%; padding: 6px;" />
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label>IVA Total:</label><br>
+                <input type="number" step="0.01" th:field="*{ivaTotal}" required style="width: 100%; padding: 6px;" />
+            </div>
+
+            <button type="submit" style="background-color: #751fa7; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">
+                Guardar Gasto
+            </button>
+        </form>
+    </div>
+
+    <footer th:replace="plantillas/partes :: pie"></footer>
+
+</body>
+</html>

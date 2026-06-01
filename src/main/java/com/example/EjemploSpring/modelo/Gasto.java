@@ -29,7 +29,6 @@ public class Gasto {
     private Double valorTotalSinIVA;
 
     @Column(name = "iva_total")
-    @NotNull
     @Min(value = 0, message = "El IVA no puede ser negativo")
     private Double ivaTotal;
 

@@ -28,13 +28,13 @@
         <table border="2" style="width: 100%; border-collapse: collapse; text-align: left;">
             <thead style="background-color: #f2f2f2;">
                 <tr>
-                    <th style="padding: 8px;">FECHA</th>
-                    <th style="padding: 8px;">LUGAR</th>
-                    <th style="padding: 8px;">DESCRIPCIÓN</th>
-                    <th style="padding: 8px;">VALOR SIN IVA</th>
-                    <th style="padding: 8px;">IVA TOTAL</th>
-                    <th style="padding: 8px;">VALOR CON IVA</th>
-                    <th style="padding: 8px;">ACCIONES</th>
+                    <th style="padding: 8px;" th:text="#{gasto.fecha}"></th>
+                    <th style="padding: 8px;" th:text="#{gasto.lugar}"></th>
+                    <th style="padding: 8px;" th:text="#{gasto.descripcion}"></th>
+                    <th style="padding: 8px;" th:text="#{gasto.valor.sin.iva}"></th>
+                    <th style="padding: 8px;" th:text="#{gasto.iva}"></th>
+                    <th style="padding: 8px;" th:text="#{gasto.valor.iva}"></th>
+                    <th style="padding: 8px;" th:text="#{gasto.acciones}"></th>
                 </tr>
             </thead>
             <tbody>
@@ -45,15 +45,27 @@
                     <td style="padding: 8px;" th:text="${g.valorTotalSinIVA}"></td>
                     <td style="padding: 8px;" th:text="${g.ivaTotal}"></td>
                     <td style="padding: 8px;" th:text="${g.valorTotalConIVA}"></td>
+                    
+                    
                     <td style="padding: 8px;">
-                        <a th:href="@{/gastos/editar/{id}(id=${g.id})}" style="color: blue; margin-right: 10px;">Editar</a>
-                        <a th:href="@{/gastos/eliminar/{id}(id=${g.id})}" style="color: red;" onclick="return confirm('¿Seguro que deseas eliminar este gasto?')">Eliminar</a>
+                        <a th:href="@{/gastos/editar/{id}(id=${g.id})}" 
+                        th:text="#{G.accion.editar}" 
+                        style="color: blue; margin-right: 10px;">
+                        </a>
+
+                        <a th:href="@{/gastos/eliminar/{id}(id=${g.id})}" 
+                        th:text="#{G.accion.eliminar}" 
+                        style="color: red;" 
+                        onclick="return confirm('¿Seguro que deseas eliminar este gasto?')">
+                        </a>
                     </td>
                 </tr>
                 <tr th:if="${gastos == null or gastos.empty}">
-                    <td colspan="7" style="text-align: center; padding: 15px; color: gray;">
-                        NO HAY GASTOS REGISTRADOS PARA ESTE USUARIO.
-                    </td>
+                        <td colspan="7" 
+                            style="text-align: center; padding: 15px; color: gray;" 
+                            th:text="#{G.mensaje.no.hay.gastos}">
+                        </td>
+                    </tr>
                 </tr>
             </tbody>
         </table>

@@ -28,8 +28,7 @@
                 <th><span th:text="#{usuario.email}"></span></th>
                 <th><span th:text="#{accion.editar}"></span></th>
                 <th><span th:text="#{accion.eliminar}"></span></th>
-                <th style="background-color: #f2f2f2; font-weight: bold; padding: 8px;">REGISTRO GASTO</th>
-
+                <th th:text="#{gasto.registrar}"></th>
             </tr>
             <tr th:each="u : ${usuarios}">
                 <td th:text="${u.cedula}"></td>
@@ -38,7 +37,7 @@
                 <td th:text="${u.email}"></td>
                 <td><a th:href="@{/editar/} + ${u.cedula}" th:text="#{accion.editar}"></a></td>
                 <td><a th:href="@{/eliminar(cedula=${u.cedula})}" th:text="#{accion.eliminar}"></a></td>
-                <td><a th:href="@{/gastos/listar/} + ${u.cedula}">VER GASTOS</a></td>            
+                <td><a th:href="@{/gastos/listar/} + ${u.cedula}" th:text="#{accion.verGastos}"></a></td>            
             </tr>
         </table>
     </div>
